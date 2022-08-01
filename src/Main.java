@@ -7,8 +7,10 @@ public class Main {
         while(true) {
             System.out.print(">");
             String bsc_input = scanner.nextLine();
-            Node lexer = new Lexer(bsc_input).parse();
-            lexer.printNodes();
+            Node tokens = new Lexer(bsc_input).parse();
+            Parser parser = new Parser(tokens);
+            String tree = parser.parse();
+            System.out.println(tree);
         }
     }
 }
