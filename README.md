@@ -18,7 +18,7 @@ output: [NUM:4.0, MUL, LPAREN, NUM:3.0, PLUS, NUM:6.0, RPAREN]
 
 ---  
 ## Parser
-a computer program that breaks down text into recognized strings of characters for further analysis.
+Parser is a computer program that breaks down text into recognized strings of characters for further analysis.
 - example:
 ```
 input: 5 + 3 * 4  
