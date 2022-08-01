@@ -19,55 +19,54 @@ public class Parser {
         else this.current_node = null;
     }
 
-    public String parse() {
+    public String[] parse() {
         if(this.current_node == null) return null;
-        String result = this.expr();
+        String[] result = this.expr();
 
         if(this.current_node != null) this.errorln();
-
         return result;
     }
 
-    public String expr() {
-        String result = this.term();
+    public String[] expr() {
+        String[] result = this.term();
 
         while(this.current_node != null && (this.current_node.type.equals("PLUS") || this.current_node.type.equals("MINUS"))) {
             if(this.current_node.type.equals("PLUS")) {
                 this.mov_pos();
-                result = new Addnode(result, this.term()).repr();
+                result = new Addnode(result[0], this.term()[0]).repr();
             }
             else if(this.current_node.type.equals("MINUS")) {
                 this.mov_pos();
-                result = new Subtractnode(result, this.term()).repr();
+                result = new Subtractnode(result[0], this.term()[0]).repr();
             }
         }
         
         return result;
     }
 
-    public String term() {
-        String result = this.factor();
+    public String[] term() {
+        String[] result = this.factor();
 
         while(this.current_node != null && (this.current_node.type.equals("MUL") || this.current_node.type.equals("DIV"))) {
             if(this.current_node.type.equals("MUL")) {
                 this.mov_pos();
-                result = new Multiplynode(result, this.factor()).repr();
+                result = new Multiplynode(result[0], this.factor()[0]).repr();
             }
             else if(this.current_node.type.equals("DIV")) {
                 this.mov_pos();
-                result = new Dividenode(result, this.factor()).repr();
+                result = new Dividenode(result[0], this.factor()[0]).repr();
             }
         }
 
         return result;
     }
 
-    public String factor() {
+    public String[] factor() {
         Node token = this.current_node;
 
         if(token.type.equals("LPAREN")) {
             this.mov_pos();
-            String result = this.expr();
+            String[] result = this.expr();
             if(this.current_node.type != "RPAREN") this.error();
             this.mov_pos();
             return result;
@@ -78,10 +77,10 @@ public class Parser {
             return new Numbernode(Double.parseDouble(token.value)).repr();
         } else if(token.type.equals("PLUS")) {
             this.mov_pos();
-            return new Plusnode(Double.parseDouble(this.factor())).repr();
+            return new Plusnode(Double.parseDouble(this.factor()[0])).repr();
         } else if(token.type.equals("MINUS")) {
             this.mov_pos();
-            return new Minusnode(Double.parseDouble(this.factor())).repr();
+            return new Minusnode(Double.parseDouble(this.factor()[0])).repr();
         }
 
         this.error();
