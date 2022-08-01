@@ -34,9 +34,17 @@ public class Lexer {
                 node.add("DIV", "/");
                 this.mov_pos();
             }
+            else if(this.current_char == '(') {
+                node.add("LPAREN", "(");
+                this.mov_pos();
+            }
+            else if(this.current_char == ')') {
+                node.add("RPAREN", ")");
+                this.mov_pos();
+            }
             else {
                 System.out.println("Input Error!");
-                this.mov_pos();
+                break;
             }
         }
 

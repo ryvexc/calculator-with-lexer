@@ -65,6 +65,14 @@ public class Parser {
     public String factor() {
         Node token = this.current_node;
 
+        if(token.type.equals("LPAREN")) {
+            this.mov_pos();
+            String result = this.expr();
+            if(this.current_node.type != "RPAREN") this.error();
+            this.mov_pos();
+            return result;
+        }
+
         if(token.type.equals("NUM")) {
             this.mov_pos();
             return new Numbernode(Float.parseFloat(token.value)).repr();
