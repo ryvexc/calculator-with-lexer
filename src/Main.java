@@ -10,7 +10,9 @@ public class Main {
             Node tokens = new Lexer(bsc_input).parse();
             Parser parser = new Parser(tokens);
             String tree = parser.parse();
-            System.out.println(tree);
+            if(tree == null) continue;
+            Printer.print(String.valueOf(Interpreter._num_state));
+            Interpreter.reset_num_state();
         }
     }
 }

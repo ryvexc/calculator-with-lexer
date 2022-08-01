@@ -75,16 +75,16 @@ public class Parser {
 
         if(token.type.equals("NUM")) {
             this.mov_pos();
-            return new Numbernode(Float.parseFloat(token.value)).repr();
+            return new Numbernode(Double.parseDouble(token.value)).repr();
         } else if(token.type.equals("PLUS")) {
             this.mov_pos();
-            return new Plusnode(Float.parseFloat(this.factor())).repr();
+            return new Plusnode(Double.parseDouble(this.factor())).repr();
         } else if(token.type.equals("MINUS")) {
             this.mov_pos();
-            return new Minusnode(Float.parseFloat(this.factor())).repr();
+            return new Minusnode(Double.parseDouble(this.factor())).repr();
         }
 
         this.error();
-        return "";
+        return null;
     }
 }

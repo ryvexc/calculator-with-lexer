@@ -3,8 +3,7 @@ import java.util.ArrayList;
 public class Node {
     public final ArrayList<String> types = new ArrayList<>();
     public final ArrayList<String> values = new ArrayList<>();
-    public String type;
-    public String value;
+    public String type, value;
 
     public Node() {}
 
@@ -31,43 +30,64 @@ public class Node {
 }
 
 class Numbernode {
-    private float node;
-    public Numbernode(float node) { this.node = node; }
-    public String repr() { return String.valueOf(this.node);}
+    private double node_value;
+    public Numbernode(double node_value) { this.node_value = node_value; }
+    public String repr() {
+        Interpreter.insert_num(this.node_value);
+        return String.valueOf(this.node_value);
+    }
 }
 
 class Addnode {
     private String left_node, right_node;
     public Addnode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
-    public String repr() { return "(" + this.left_node + "+" + this.right_node + ")"; }
+    public String repr() {
+        Interpreter.insert_num(Double.parseDouble(left_node) + Double.parseDouble(right_node));
+        return "(" + this.left_node + "+" + this.right_node + ")";
+    }
 }
 
 class Subtractnode {
     private String left_node, right_node;
     public Subtractnode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
-    public String repr() { return "(" + this.left_node + "-" + this.right_node + ")"; }
+    public String repr() {
+        Interpreter.insert_num(Double.parseDouble(left_node) - Double.parseDouble(right_node));
+        return "(" + this.left_node + "-" + this.right_node + ")";
+    }
 }
 
 class Multiplynode {
     private String left_node, right_node;
     public Multiplynode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
-    public String repr() { return "(" + this.left_node + "*" + this.right_node + ")"; }
+    public String repr() {
+        Interpreter.insert_num(Double.parseDouble(left_node) * Double.parseDouble(right_node));
+        return "(" + this.left_node + "*" + this.right_node + ")";
+    }
 }
 
 class Dividenode {
     private String left_node, right_node;
     public Dividenode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
-    public String repr() { return "(" + this.left_node + "/" + this.right_node + ")"; }
+    public String repr() {
+        Interpreter.insert_num(Double.parseDouble(left_node) / Double.parseDouble(right_node));
+        return "(" + this.left_node + "/" + this.right_node + ")";
+    }
 }
 
 class Plusnode {
-    private float node;
-    public Plusnode(float node) { this.node = node; }
-    public String repr() { return "(+" + String.valueOf(this.node) + ")";}
+    private double node;
+    public Plusnode(double node) { this.node = node; }
+    public String repr() {
+        Interpreter.insert_num(this.node);
+        return "(+" + String.valueOf(this.node) + ")";
+    }
 }
 
 class Minusnode {
-    private float node;
-    public Minusnode(float node) { this.node = node; }
-    public String repr() { return "(-" + String.valueOf(this.node) + ")";}
+    private double node;
+    public Minusnode(double node) { this.node = node; }
+    public String repr() {
+        Interpreter.insert_num(this.node);
+        return "(-" + String.valueOf(this.node) + ")";
+    }
 }

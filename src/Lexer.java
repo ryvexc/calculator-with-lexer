@@ -60,8 +60,9 @@ public class Lexer {
             this.mov_pos();
         }
         if(_stream.charAt(0) == '.') node.add("NUM", "0"+_stream);
-        else if(!_stream.contains(".")) node.add("NUM", _stream+".0");
-        else if(_stream.charAt(_stream.length() - 1) == '.') node.add("NUM", _stream+"0");
+        else if(!_stream.contains(".")) node.add("NUM", _stream+".00");
+        else if(_stream.charAt(_stream.length() - 2) == '.') node.add("NUM", _stream+"0");
+        else if(_stream.charAt(_stream.length() - 1) == '.') node.add("NUM", _stream+"00");
         else node.add("NUM", _stream);
     }
 }
