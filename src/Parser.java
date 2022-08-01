@@ -31,7 +31,7 @@ public class Parser {
     public String expr() {
         String result = this.term();
 
-        while(this.current_node != null && (this.current_node.type.equals("PLUS") || this.current_node.value.equals("MINUS"))) {
+        while(this.current_node != null && (this.current_node.type.equals("PLUS") || this.current_node.type.equals("MINUS"))) {
             if(this.current_node.type.equals("PLUS")) {
                 this.mov_pos();
                 result = new Addnode(result, this.term()).repr();
@@ -68,9 +68,15 @@ public class Parser {
         if(token.type.equals("NUM")) {
             this.mov_pos();
             return new Numbernode(Float.parseFloat(token.value)).repr();
-        } else {
-            this.error();
-            return "";
+        } else if(token.type.equals("PLUS")) {
+            this.mov_pos();
+            return new Plusnode(Float.parseFloat(this.factor())).repr();
+        } else if(token.type.equals("MINUS")) {
+            this.mov_pos();
+            return new Minusnode(Float.parseFloat(this.factor())).repr();
         }
+
+        this.error();
+        return "";
     }
 }

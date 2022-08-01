@@ -59,3 +59,15 @@ class Dividenode {
     public Dividenode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
     public String repr() { return "(" + this.left_node + "/" + this.right_node + ")"; }
 }
+
+class Plusnode {
+    private float node;
+    public Plusnode(float node) { this.node = node; }
+    public String repr() { return "(+" + String.valueOf(this.node) + ")";}
+}
+
+class Minusnode {
+    private float node;
+    public Minusnode(float node) { this.node = node; }
+    public String repr() { return "(-" + String.valueOf(this.node) + ")";}
+}
