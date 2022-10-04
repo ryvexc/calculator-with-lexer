@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Node {
@@ -42,10 +43,10 @@ class Addnode {
     private String left_node, right_node;
     public Addnode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
     public String[] repr() {
-        Interpreter.insert_num(Double.parseDouble(left_node) + Double.parseDouble(right_node));
+        Interpreter.insert_num(new BigDecimal(left_node).add(new BigDecimal(right_node)).doubleValue());
         return new String[]{
                 // lex info
-                String.valueOf(Double.parseDouble(left_node) + Double.parseDouble(right_node)),
+                new BigDecimal(left_node).add(new BigDecimal(right_node)).toPlainString(),
                 // lex res
                 "(" + this.left_node + "+" + this.right_node + ")"
         };
@@ -56,10 +57,10 @@ class Subtractnode {
     private String left_node, right_node;
     public Subtractnode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
     public String[] repr() {
-        Interpreter.insert_num(Double.parseDouble(left_node) - Double.parseDouble(right_node));
+        Interpreter.insert_num(new BigDecimal(left_node).subtract(new BigDecimal(right_node)).doubleValue());
         return new String[]{
                 // lex info
-                String.valueOf(Double.parseDouble(left_node) - Double.parseDouble(right_node)),
+                new BigDecimal(left_node).subtract(new BigDecimal(right_node)).toPlainString(),
                 // lex res
                 "(" + this.left_node + "-" + this.right_node + ")"
         };
@@ -70,10 +71,10 @@ class Multiplynode {
     private String left_node, right_node;
     public Multiplynode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
     public String[] repr() {
-        Interpreter.insert_num(Double.parseDouble(left_node) * Double.parseDouble(right_node));
+        Interpreter.insert_num(new BigDecimal(left_node).multiply(new BigDecimal(right_node)).doubleValue());
         return new String[]{
                 // lex info
-                String.valueOf(Double.parseDouble(left_node) * Double.parseDouble(right_node)),
+                new BigDecimal(left_node).multiply(new BigDecimal(right_node)).toPlainString(),
                 // lex res
                 "(" + this.left_node + "*" + this.right_node + ")"
         };
@@ -84,10 +85,10 @@ class Dividenode {
     private String left_node, right_node;
     public Dividenode(String left_node, String right_node) { this.left_node = left_node; this.right_node = right_node; }
     public String[] repr() {
-        Interpreter.insert_num(Double.parseDouble(left_node) / Double.parseDouble(right_node));
+        Interpreter.insert_num(new BigDecimal(left_node).divide(new BigDecimal(right_node)).doubleValue());
         return new String[]{
                 // lex info
-                String.valueOf(Double.parseDouble(left_node) / Double.parseDouble(right_node)),
+                new BigDecimal(left_node).divide(new BigDecimal(right_node)).toPlainString(),
                 // lex res
                 "(" + this.left_node + "/" + this.right_node + ")"
         };
